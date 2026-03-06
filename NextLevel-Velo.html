@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NextLevel Velo | Strength & Baseball Training</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --dirt: #1a1208;
+    --leather: #8B4513;
+    --chalk: #e8e0d0;
+    --red: #c0392b;
+    --red-hot: #e74c3c;
+    --gold: #d4a017;
+    --iron: #3a3a3a;
+    --seam: #f0ebe0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--chalk);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  /* GRAIN OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(192,57,43,0.3);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: var(--chalk);
+  }
+
+  .nav-logo span { color: var(--red); }
+
+  nav ul {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  nav ul a {
+    color: var(--chalk);
+    text-decoration: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: opacity 0.2s, color 0.2s;
+  }
+
+  nav ul a:hover { opacity: 1; color: var(--red); }
+
+  .nav-cta {
+    background: var(--red);
+    color: white !important;
+    opacity: 1 !important;
+    padding: 0.5rem 1.4rem;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--red-hot) !important; color: white !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 8rem 3rem 4rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 50%, rgba(139,69,19,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(192,57,43,0.08) 0%, transparent 50%),
+      linear-gradient(160deg, #0a0a0a 0%, #1a1208 50%, #0a0a0a 100%);
+  }
+
+  /* Baseball seam lines */
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 60px,
+        rgba(192,57,43,0.03) 60px,
+        rgba(192,57,43,0.03) 61px
+      );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: var(--red);
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 12vw, 10rem);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 .line2 {
+    color: var(--red);
+    display: block;
+    -webkit-text-stroke: 1px var(--red);
+  }
+
+  .hero h1 .line3 {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(232,224,208,0.3);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(232,224,208,0.7);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    background: var(--red);
+    padding: 1rem 2.5rem;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--red-hot);
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--chalk);
+    border: 1px solid rgba(232,224,208,0.3);
+    padding: 1rem 2.5rem;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--chalk);
+    color: white;
+  }
+
+  /* Big stat on right */
+  .hero-stat {
+    position: absolute;
+    right: 6%;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: right;
+    z-index: 2;
+  }
+
+  .hero-stat .big-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(6rem, 15vw, 16rem);
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(192,57,43,0.25);
+    display: block;
+  }
+
+  .hero-stat .stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(192,57,43,0.5);
+  }
+
+  /* SCROLL TICKER */
+  .ticker {
+    background: var(--red);
+    padding: 0.6rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker 25s linear infinite;
+  }
+
+  .ticker-inner span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: white;
+    padding: 0 3rem;
+  }
+
+  .ticker-inner span::before {
+    content: '✦';
+    margin-right: 3rem;
+    opacity: 0.6;
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ABOUT / PROGRAM */
+  section {
+    padding: 6rem 3rem;
+  }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(192,57,43,0.3);
+    max-width: 60px;
+  }
+
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 0.95;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+  }
+
+  /* PROGRAM PILLARS */
+  .pillars {
+    background: var(--dirt);
+    border-top: 2px solid rgba(192,57,43,0.2);
+    border-bottom: 2px solid rgba(192,57,43,0.2);
+  }
+
+  .pillars-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 0;
+  }
+
+  .pillar {
+    padding: 3rem 2.5rem;
+    border-right: 1px solid rgba(232,224,208,0.07);
+    position: relative;
+    transition: background 0.3s;
+  }
+
+  .pillar:last-child { border-right: none; }
+  .pillar:hover { background: rgba(192,57,43,0.05); }
+
+  .pillar-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(192,57,43,0.15);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .pillar-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .pillar h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.8rem;
+    color: var(--chalk);
+  }
+
+  .pillar p {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: rgba(232,224,208,0.6);
+  }
+
+  /* WHAT YOU GET */
+  .program-section {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .program-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+
+  .program-text p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(232,224,208,0.7);
+    margin-bottom: 1.5rem;
+  }
+
+  .checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+    color: rgba(232,224,208,0.85);
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(232,224,208,0.06);
+  }
+
+  .checklist li::before {
+    content: '→';
+    color: var(--red);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials-section {
+    background: #0d0d0d;
+    border-top: 1px solid rgba(232,224,208,0.06);
+  }
+
+  .testimonials-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .testimonial {
+    background: var(--dirt);
+    border: 1px solid rgba(232,224,208,0.07);
+    padding: 2.5rem;
+    position: relative;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    transition: border-color 0.3s;
+  }
+
+  .testimonial:hover {
+    border-color: rgba(192,57,43,0.4);
+  }
+
+  .testimonial::before {
+    content: '"';
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 6rem;
+    color: rgba(192,57,43,0.15);
+    position: absolute;
+    top: -1rem;
+    left: 1.5rem;
+    line-height: 1;
+  }
+
+  .testimonial p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(232,224,208,0.75);
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+    background: var(--iron);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    color: var(--red);
+    flex-shrink: 0;
+    border: 1px solid rgba(192,57,43,0.3);
+  }
+
+  .author-info strong {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--chalk);
+  }
+
+  .author-info span {
+    font-size: 0.8rem;
+    color: rgba(232,224,208,0.4);
+  }
+
+  .stars {
+    color: var(--gold);
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  /* PRICING */
+  .pricing-section {
+    background: linear-gradient(180deg, #0a0a0a 0%, #100a04 50%, #0a0a0a 100%);
+  }
+
+  .pricing-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .pricing-inner h2 { text-align: center; }
+
+  .pricing-card {
+    margin-top: 3rem;
+    background: var(--dirt);
+    border: 1px solid rgba(192,57,43,0.35);
+    padding: 3.5rem;
+    position: relative;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  }
+
+  .pricing-card::before {
+    content: 'MOST POPULAR';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--red);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    padding: 0.3rem 1.5rem;
+    white-space: nowrap;
+  }
+
+  .price-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--chalk);
+    margin: 1.5rem 0 0.3rem;
+  }
+
+  .price-amount sup {
+    font-size: 2rem;
+    vertical-align: super;
+  }
+
+  .price-period {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(232,224,208,0.4);
+    margin-bottom: 2rem;
+  }
+
+  .price-features {
+    list-style: none;
+    margin-bottom: 2.5rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .price-features li {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    color: rgba(232,224,208,0.75);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(232,224,208,0.06);
+  }
+
+  .price-features li::before {
+    content: '✦';
+    color: var(--red);
+    font-size: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  .price-note {
+    font-size: 0.8rem;
+    color: rgba(232,224,208,0.35);
+    margin-top: 1.2rem;
+  }
+
+  /* FAQ */
+  .faq-section {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(232,224,208,0.08);
+    padding: 1.5rem 0;
+  }
+
+  .faq-q {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: 0.5px;
+    color: var(--chalk);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .faq-q .toggle {
+    color: var(--red);
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    transition: transform 0.3s;
+  }
+
+  .faq-a {
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: rgba(232,224,208,0.55);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+  }
+
+  .faq-item.open .faq-a {
+    max-height: 200px;
+    padding-top: 1rem;
+  }
+
+  .faq-item.open .toggle {
+    transform: rotate(45deg);
+  }
+
+  /* FOOTER CTA */
+  .footer-cta {
+    background: var(--red);
+    padding: 5rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer-cta::before {
+    content: 'VELO';
+    position: absolute;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 25vw;
+    color: rgba(0,0,0,0.12);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .footer-cta h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    color: white;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-cta p {
+    color: rgba(255,255,255,0.75);
+    font-size: 1.05rem;
+    margin: 1rem auto 2.5rem;
+    max-width: 480px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-cta .btn-white {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--red);
+    background: white;
+    padding: 1rem 3rem;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    display: inline-block;
+    transition: transform 0.2s, opacity 0.2s;
+    position: relative;
+    z-index: 1;
+    font-weight: 700;
+  }
+
+  .footer-cta .btn-white:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #050505;
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(232,224,208,0.06);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  footer .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+    color: var(--chalk);
+    opacity: 0.6;
+  }
+
+  footer .logo span { color: var(--red); }
+
+  footer p {
+    font-size: 0.8rem;
+    color: rgba(232,224,208,0.25);
+    letter-spacing: 1px;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.6s ease 0.1s both; }
+  .hero h1 { animation: fadeUp 0.7s ease 0.2s both; }
+  .hero-sub { animation: fadeUp 0.7s ease 0.35s both; }
+  .hero-actions { animation: fadeUp 0.7s ease 0.5s both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav ul { display: none; }
+    .hero-stat { display: none; }
+    .program-layout { grid-template-columns: 1fr; gap: 2rem; }
+    section { padding: 4rem 1.5rem; }
+    nav { padding: 1rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Next<span>Level</span> Velo</div>
+  <ul>
+    <li><a href="#program">Program</a></li>
+    <li><a href="#testimonials">Results</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#pricing" class="nav-cta">Join Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Strength + Baseball Performance</div>
+    <h1>
+      NEXT
+      <span class="line2">LEVEL</span>
+      <span class="line3">VELO</span>
+    </h1>
+    <p class="hero-sub">Built for players who are serious about adding velocity, building real strength, and dominating on the field. No fluff. Just work.</p>
+    <div class="hero-actions">
+      <a href="#program" class="btn-primary">See the Program</a>
+      <a href="#pricing" class="btn-ghost">Get Started — $XX/mo</a>
+    </div>
+  </div>
+  <div class="hero-stat">
+    <span class="big-num">90+</span>
+    <span class="stat-label">MPH is the goal</span>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>Velocity Training</span>
+    <span>Strength & Power</span>
+    <span>Baseball Performance</span>
+    <span>Monthly Programming</span>
+    <span>Built for Ballplayers</span>
+    <span>Velocity Training</span>
+    <span>Strength & Power</span>
+    <span>Baseball Performance</span>
+    <span>Monthly Programming</span>
+    <span>Built for Ballplayers</span>
+  </div>
+</div>
+
+<!-- PILLARS -->
+<section class="pillars" id="program">
+  <div class="pillars-inner">
+    <div class="section-label">What We Train</div>
+    <h2>Four Pillars.<br>One System.</h2>
+    <div class="pillars-grid">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <span class="pillar-icon">⚾</span>
+        <h3>Arm Care & Velocity</h3>
+        <p>Progressive throwing protocols designed to build arm speed and protect your shoulder and elbow long-term. Add real, sustainable MPH.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <span class="pillar-icon">🏋️</span>
+        <h3>Power & Strength</h3>
+        <p>Baseball-specific lifting to build rotational power, hip drive, and full-body force production — the foundation of elite velocity.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <span class="pillar-icon">⚡</span>
+        <h3>Speed & Athleticism</h3>
+        <p>Sprint mechanics, lateral quickness, and explosive first-step training to make you a threat at every position.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">04</div>
+        <span class="pillar-icon">🧠</span>
+        <h3>Recovery & Durability</h3>
+        <p>Structured deload weeks, mobility work, and recovery protocols to keep you healthy and on the mound all season.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section>
+  <div class="program-section">
+    <div class="section-label">The Program</div>
+    <h2>Everything You<br>Need. Nothing You Don't.</h2>
+    <div class="program-layout">
+      <div class="program-text">
+        <p>NextLevel Velo is a month-to-month subscription program built specifically for baseball players who want to gain velocity and train like athletes. Each month you get a full training block — structured, progressive, and ready to go.</p>
+        <p>No guesswork. No generic gym splits. Just a proven system built around the demands of the sport.</p>
+      </div>
+      <ul class="checklist">
+        <li>Full monthly strength & conditioning program</li>
+        <li>Dedicated velocity & throwing program</li>
+        <li>Weekly arm care and mobility routines</li>
+        <li>Video demonstrations for every exercise</li>
+        <li>Access to private athlete community</li>
+        <li>Monthly check-in and programming updates</li>
+        <li>PDF downloads — train anywhere</li>
+        <li>Cancel anytime, no contracts</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <div class="testimonials-inner">
+    <div class="section-label">Results</div>
+    <h2>Players Don't Lie.</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>Went from sitting 83-85 to consistently hitting 89-91 in one off-season. The programming is smart and the strength work actually translates to the mound.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">JR</div>
+          <div class="author-info">
+            <strong>Jake R.</strong>
+            <span>RHP, 18 years old</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>The arm care alone is worth the subscription. My elbow feels better than it has in years and my velo is climbing. This isn't just hype — it's a real program.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">MC</div>
+          <div class="author-info">
+            <strong>Marcus C.</strong>
+            <span>LHP, College Pitcher</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>I've tried a lot of programs. This is the first one that actually felt like it was built for baseball players, not just generic gym stuff slapped with a baseball logo.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">TW</div>
+          <div class="author-info">
+            <strong>Tyler W.</strong>
+            <span>OF/P, High School Senior</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="pricing-inner">
+    <div class="section-label" style="justify-content:center;">Pricing</div>
+    <h2>One Price.<br>All Access.</h2>
+    <div class="pricing-card">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;letter-spacing:3px;text-transform:uppercase;color:rgba(232,224,208,0.5);margin-top:1rem;">Monthly Subscription</div>
+      <div class="price-amount"><sup>$</sup>XX</div>
+      <div class="price-period">per month · cancel anytime</div>
+      <ul class="price-features">
+        <li>Full monthly training block (strength + velocity)</li>
+        <li>New programming every month</li>
+        <li>Video library access</li>
+        <li>Private athlete community</li>
+        <li>Arm care & mobility protocols</li>
+        <li>PDF downloads — use offline</li>
+      </ul>
+      <a href="#" class="btn-primary" style="width:100%;text-align:center;display:block;">Start Training Today</a>
+      <p class="price-note">No contracts. No commitments. Cancel anytime from your account.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="faq-section">
+    <div class="section-label">FAQ</div>
+    <h2>Common Questions.</h2>
+
+    <div style="margin-top:2.5rem;">
+      <div class="faq-item open">
+        <div class="faq-q">Who is this program for? <span class="toggle">+</span></div>
+        <div class="faq-a">NextLevel Velo is built for high school and college-age baseball players — pitchers and position players — who want to add velocity, build functional strength, and train seriously. You should have basic gym experience and access to a barbell and some space to throw.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do I need special equipment? <span class="toggle">+</span></div>
+        <div class="faq-a">You'll need access to a weight room with a barbell, dumbbells, and a pull-up bar. For the velocity work, you need a partner and some room to throw. No fancy machines required.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How many days per week does it require? <span class="toggle">+</span></div>
+        <div class="faq-a">The program is designed around 4–5 days per week — typically 3 lifting days and 2 throwing/velocity days. Each session runs 45–75 minutes.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I cancel anytime? <span class="toggle">+</span></div>
+        <div class="faq-a">Yes. This is a no-contract monthly subscription. You can cancel at any time directly from your account and you won't be charged again.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What if I'm in-season? <span class="toggle">+</span></div>
+        <div class="faq-a">We offer an in-season maintenance track inside the program — shorter sessions designed to keep your strength and arm health without taxing your recovery during the season.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<div class="footer-cta">
+  <h2>Ready to Add<br>Velo?</h2>
+  <p>Join NextLevel Velo and start your first training block today. The off-season doesn't wait.</p>
+  <a href="#pricing" class="btn-white">Get Started Now</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">Next<span>Level</span> Velo</div>
+  <p>© 2025 NextLevel Velo. All rights reserved.</p>
+  <p>Questions? <a href="mailto:hello@nextlevelvelo.com" style="color:var(--red);text-decoration:none;">hello@nextlevelvelo.com</a></p>
+</footer>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.pillar, .testimonial, .faq-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
